@@ -150,7 +150,7 @@ class Control extends Module {
     // Only flush IF stage (not ID) since branch resolved early
     // TODO: Which stage needs to be flushed when branch is taken?
     // Hint: Branch resolved in ID stage, discard wrong-path instruction
-    io.if_flush := ___
+    io.if_flush := ?
     // Note: No ID flush needed - branch already resolved in ID!
     // This is the key optimization: 1-cycle branch penalty vs 2-cycle
   }
@@ -183,10 +183,10 @@ class Control extends Module {
   //
   // Q6: Complete the stall condition summary:
   // Stall is needed when:
-  // 1. _____ (EX stage condition)
-  // 2. _____ (MEM stage condition)
+  // 1. ? (EX stage condition)
+  // 2. ? (MEM stage condition)
   //
   // Flush is needed when:
-  // 1. _____ (Branch/Jump condition)
+  // 1. ? (Branch/Jump condition)
   //
 }

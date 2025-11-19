@@ -143,7 +143,7 @@ class MemoryAccess extends Module {
       is(InstructionsTypeS.sh) {
         // TODO: Complete store halfword logic
         // Hint: Check address to determine lower/upper halfword position
-        when(mem_address_index(___) === 0.U) {
+        when(mem_address_index(?) === 0.U) {
           // Lower halfword (bytes 0-1)
           // TODO: Enable strobes for lower two bytes, no shifting needed
           writeStrobes(?) := true.B
