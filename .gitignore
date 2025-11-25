@@ -60,3 +60,20 @@ test_run_dir/
 **/src/test/scala/riscv/compliance/ComplianceTest.scala
 **/src/main/resources/test.asmbin
 **/src/main/resources/test_*.asmbin
+
+### Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+### Guide files (documentation locale - ne pas commiter)
+START_HERE.md
+QUICK_START.md
+GUIDE_COMPLET.md
+CHISEL_EXAMPLES.md
+TEMPLATES.md
+README_GUIDES.md
+LISEZMOI.txt
+COURS_CHISEL_DEBUTANT.md
+setup-env.sh
