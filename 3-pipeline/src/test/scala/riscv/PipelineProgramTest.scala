@@ -170,5 +170,43 @@ class PipelineProgramTest extends AnyFlatSpec with ChiselScalatestTester {
         c.io.mem_debug_read_data.expect(0x2022L.U)
       }
     }
+
+    it should "execute Tower of Hanoi" in {
+      runProgram("hanoi.asmbin", cfg) { c =>
+        c.clock.setTimeout(0)
+        c.clock.step(5000)
+
+        //total number of moves, normal 7
+        c.io.mem_debug_read_address.poke(4.U)
+        c.clock.step()
+        c.io.mem_debug_read_data.expect(7.U, "Hanoi: mem[4] should be 7 (total moves)")
+
+        // final positions, normal: 2
+        c.io.mem_debug_read_address.poke(0x90.U)
+        c.clock.step()
+        c.io.mem_debug_read_data.expect(2.U, "Hanoi: disk 1 should be on 2")
+
+        c.io.mem_debug_read_address.poke(0x94.U)
+        c.clock.step()
+        c.io.mem_debug_read_data.expect(2.U, "Hanoi: disk 2 should be on 2")
+
+        c.io.mem_debug_read_address.poke(0x98.U)
+        c.clock.step()
+        c.io.mem_debug_read_data.expect(2.U, "Hanoi: disk 3 should be on 2")
+
+        //Move sequence : normal disk 0 from 0 to 2
+        c.io.mem_debug_read_address.poke(8.U)
+        c.clock.step()
+        c.io.mem_debug_read_data.expect(0.U, "Hanoi move 1: disk should be 0")
+
+        c.io.mem_debug_read_address.poke(12.U)
+        c.clock.step()
+        c.io.mem_debug_read_data.expect(0.U, "Hanoi move 1: from should be 0")
+
+        c.io.mem_debug_read_address.poke(16.U)
+        c.clock.step()
+        c.io.mem_debug_read_data.expect(2.U, "Hanoi move 1: to should be 2")
+      }
+    }
   }
 }
